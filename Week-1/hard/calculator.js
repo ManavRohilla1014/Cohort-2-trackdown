@@ -49,7 +49,7 @@ class Calculator {
   }
 
   calculate(expression) {
-    aces
+   
     expression = expression.replace(/\s+/g, "");
 
     
@@ -57,8 +57,13 @@ class Calculator {
       throw new Error("Invalid characters in expression");
     }
 
+    
+    if (/\b\/\s*0\b/.test(expression)) {
+      throw new Error("Cannot divide by zero");
+    }
+
     try {
-      this.result = eval(expression); 
+      this.result = Function(`'use strict'; return (${expression})`)();
     } catch (error) {
       throw new Error("Invalid mathematical expression");
     }
@@ -66,4 +71,6 @@ class Calculator {
 }
 
 module.exports = Calculator;
+
+
 

@@ -12,7 +12,7 @@
 
 class Todo {
   constructor() {
-    this.todos = [];
+    this.todos = []; 
   }
 
   add(todo) {
@@ -21,14 +21,14 @@ class Todo {
 
   remove(index) {
     if (index < 0 || index >= this.todos.length) {
-      throw new Error("Invalid index");
+      return; 
     }
     this.todos.splice(index, 1);
   }
 
   update(index, updatedTodo) {
     if (index < 0 || index >= this.todos.length) {
-      throw new Error("Invalid index");
+      return; 
     }
     this.todos[index] = updatedTodo;
   }
@@ -39,7 +39,7 @@ class Todo {
 
   get(index) {
     if (index < 0 || index >= this.todos.length) {
-      throw new Error("Invalid index");
+      return null; 
     }
     return this.todos[index];
   }
@@ -50,3 +50,4 @@ class Todo {
 }
 
 module.exports = Todo;
+
