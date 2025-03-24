@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<br lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function debouncing(){
+            let timeout;
+            clearTimeout(timeout);
+
+            timeout = setTimeout(function (){
+                populateDiv()
+            },1000);
+
+        }
+        function populateDiv(){
+
+           const a = document.getElementById("first").value;
+           const b = document.getElementById("second").value;
+           
+           fetch("https://sum-server.100xdevs.com/sum?a=" + a + "&b=" + b)
+           .then(function(response){
+            response.text()
+            .then(function(ans){
+                document.getElementById("finalSum").innerHTML = ans;
+            })
+           });
+        }
+    </script>
+</head>
+<body>
+    <input oninput="debouncing()" type="text" placeholder="First Number" id="first"></input> <br></br>
+    <input oninput="debouncing()" type="text" placeholder="Second Number" id="second"></input> <br></br>
+    <button onclick="populateDiv()">Calculate button </button><br></br>
+    <div id="finalSum" >hi there</div>
+</body>
+   
+
+</html>
